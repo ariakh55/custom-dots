@@ -1,0 +1,14 @@
+{
+    "colorscheme": "gruvbox",
+    "apps": {
+        "kitty": {
+            "colorscheme": "catppuccin-mocha"
+        },
+        "tmux": {
+            "colorscheme": "catppuccin-mocha"
+        },
+        "nvim": {
+            "colorscheme": "catppuccin-mocha"
+        }
+    }
+}

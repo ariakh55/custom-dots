@@ -1,0 +1,10 @@
+{
+  "neovim": {
+    "baseConfigFilePath": "~/.config/nvim/",
+    "configDirs": {
+      "init": "lua/sulfurchan",
+      "after": "after",
+      "ftpluing": "ftplugin"
+    }
+  }
+}
