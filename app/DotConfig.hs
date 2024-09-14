@@ -6,20 +6,26 @@ import Data.Aeson
 import Data.HashMap.Strict qualified as HM
 import Data.Text (Text)
 
-newtype Properties = Properties {colorscheme :: Text} deriving (Show, Eq)
+newtype DotProperties = DotProperties {colorscheme :: Text} deriving (Show, Eq)
 
-data Declarations = Declarations
+data DotDeclarations = DotDeclarations
   { globalColorscheme :: Text,
-    apps :: HM.HashMap Text Properties
+    apps :: HM.HashMap Text DotProperties
   }
   deriving (Show, Eq)
 
-instance FromJSON Properties where
-  parseJSON = withObject "Properties" $ \v ->
-    Properties <$> v .: "colorscheme"
+instance FromJSON DotProperties where
+  parseJSON = withObject "DotProperties" $ \v ->
+    DotProperties <$> v .: "colorscheme"
 
-instance FromJSON Declarations where
+instance FromJSON DotDeclarations where
   parseJSON = withObject "Config" $ \v ->
-    Declarations
+    DotDeclarations
       <$> v .: "colorscheme"
       <*> v .: "apps"
+
+getConfig :: DotDeclarations -> (Text, [(Text, Text)])
+getConfig config =
+  let globalColorScheme = globalColorscheme config
+      appsMap = apps config
+      appConfigs = [(appName, colorscheme appConfig) | (appName, appConfig) <- HM.toList appsMap] in (globalColorScheme, appConfigs)

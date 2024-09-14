@@ -4,7 +4,7 @@
     "configDirs": {
       "init": "lua/sulfurchan",
       "after": "after",
-      "ftpluing": "ftplugin"
+      "ftplugin": "ftplugin"
     }
   }
 }
